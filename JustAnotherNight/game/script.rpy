@@ -232,6 +232,7 @@ label scene_start:
     # Soft transition to Act 2
     chosen_character "You’ve really got me thinking about some deep stuff tonight. It’s nice to talk like this. I feel like I’m learning so much about you."
 
+# Code I added from chow starts here
     jump act_2_start
 
 label act_2_start:
