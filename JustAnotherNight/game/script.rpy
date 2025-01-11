@@ -67,8 +67,13 @@ label start:
 
         # Create a personalized greeting message
         greeting_message = {
+<<<<<<< HEAD
+            "Man": f"Welcome, Sir {player_name}!",
+            "Woman": f"Welcome, Ma'am {player_name}!",
+=======
             "Woman": f"Welcome, Ms. {player_name}!",
             "Man": f"Welcome, Mr. {player_name}!",
+>>>>>>> f21c633384c6acd2e3d12251ba11dbec7cb9245e
             "Non-Binary": f"Welcome, {player_name}!"
         }[gender_display]
 
