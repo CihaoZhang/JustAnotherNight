@@ -1,26 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/rayansoussi/Documents/GitHub/JustAnotherNight/Just Another Night/game/saves/persistent.1736584893.tmp'
+  File "renpy/common/00start.rpy", line 288, in script
+    python:
+ScriptError: could not find label 'start'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
   File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/bootstrap.py", line 359, in bootstrap
     renpy.main.main()
-  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/main.py", line 666, in main
-    renpy.persistent.update(True)
-  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/persistent.py", line 434, in update
-    save()
-  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/persistent.py", line 456, in save
-    renpy.loadsave.location.save_persistent(compressed)
-  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/savelocation.py", line 622, in save_persistent
-    l.save_persistent(data)
-  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/savelocation.py", line 426, in save_persistent
-    with open(fn_tmp, "wb") as f:
-FileNotFoundError: [Errno 2] No such file or directory: '/Users/rayansoussi/Documents/GitHub/JustAnotherNight/Just Another Night/game/saves/persistent.1736584893.tmp'
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/main.py", line 652, in main
+    run(restart)
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/main.py", line 148, in run
+    renpy.execution.run_context(True)
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/execution.py", line 958, in run_context
+    context.run()
+  File "renpy/common/00start.rpy", line 288, in script
+    python:
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/script.py", line 1103, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'start'.
 
 macOS-14.6-arm64-arm-64bit arm64
 Ren'Py 8.3.4.24120703
-Just Another Night 1.0
-Sat Jan 11 04:56:59 2025
+ 
+Sat Jan 11 04:58:47 2025
