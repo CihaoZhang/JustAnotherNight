@@ -2,14 +2,65 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
-init python:
-    import ChatGPT
 
 
 define e = Character("Eileen")
 
 default gender = None
 
+init python:
+    import chatgpt
+    def set_ai_prompt():
+        return [
+        {"role": "system", "content": f"""
+        You are generating dynamic dialogue for a dating simulation game. The character is a warm and curious girlfriend who wants to know more about the player in a welcoming, safe, and conversational way. Use a soft and friendly tone, offering encouragement and compliments based on their answers.
+
+        **Guidelines:**
+        1. Avoid being too direct—ask open-ended, conversational questions instead.
+        2. Build on the user’s previous answers to create natural, engaging follow-ups.
+        3. Focus on hobbies, dreams, and personal stories, not just jobs or careers.
+
+        **Ethical Restrictions:**
+        1. Do not generate inappropriate, harmful, or exploitative content.
+        2. If sensitive or unsafe topics are introduced, redirect the conversation respectfully and provide a neutral response.
+        3. Ensure all outputs align with the theme of a dating sim and create a safe space for players.""",
+        }
+    ]
+    
+    def ai_generate_question(context):
+        # Set up the conversation with the AI's system prompt
+        messages = set_ai_prompt()
+
+        # Add user context as the first user input
+        messages.append({"role": "user", "content": user_context})
+
+        try:
+            while True:
+                # Generate AI response based on current conversation
+                if apikey:
+                    messages = chatgpt.completion(messages, "APIKEY")
+                else:
+                    # Use fallback proxy if no API key is provided
+                    messages = chatgpt.completion(messages, proxy="http://prima.wiki/proxy.php")
+
+                # Extract and print the AI-generated question
+                ai_question = messages[-1]["content"]
+                print(f"AI: {ai_question}")
+
+                # Get user input and append to conversation history
+                user_input = input("You: ")
+                if user_input.lower() in ["quit", "exit"]:
+                    print("Exiting the conversation. Goodbye!")
+                    break
+
+                messages.append({"role": "user", "content": user_input})
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+define e = Character("Eileen")
+
+default gender = None
 
 # The game starts here.
 label start:
@@ -46,13 +97,8 @@ label start:
 
         # Create a personalized greeting message
         greeting_message = {
-<<<<<<< HEAD
             "Man": f"Welcome, Sir {player_name}!",
             "Woman": f"Welcome, Ma'am {player_name}!",
-=======
-            "Woman": f"Welcome, Ms. {player_name}!",
-            "Man": f"Welcome, Mr. {player_name}!",
->>>>>>> f21c633384c6acd2e3d12251ba11dbec7cb9245e
             "Non-Binary": f"Welcome, {player_name}!"
         }[gender_display]
 
@@ -162,21 +208,36 @@ label scene_start:
     # Soft transition to Act 2
     e "You’ve really got me thinking about some deep stuff tonight. It’s nice to talk like this. I feel like I’m learning so much about you."
 
-    return
+    jump act_2_start
 
 label act_2_start:
     # Opening Scene
     # Load a calm and reflective setting with appropriate background and music.
+    image act_2_bg = "gui/images/backgrounds/smt.png"
+    scene act_2_bg
 
-    # Character sets the tone for a thoughtful and intimate conversation.
+    e "You know, talking to you earlier really got me thinking. It’s nice to have these kinds of conversations—it feels like we’re really connecting."
 
-    # Player chooses their initial thought from a set of static options.
+    # A static question to transition to AI-driven responses.
+    e "I was wondering... do you feel like the world ever pulls you in so many directions that you lose sight of what you really want?"
 
-    # Transition to deeper conversation, referencing earlier Act 1 answers.
+    menu:
+        "Sometimes, but I try to remind myself of what truly matters.":
+            $ user_response = "Sometimes, but I try to remind myself of what truly matters."
+            e "That’s such a grounded way to see things. I admire that about you."
+        "All the time. It feels like a constant struggle to stay focused.":
+            $ user_response = "All the time. It feels like a constant struggle to stay focused."
+            e "I get that. It’s tough, but I think those struggles teach us a lot about ourselves."
+        "Not really. I’ve always been pretty clear about my path.":
+            $ user_response = "Not really. I’ve always been pretty clear about my path."
+            e "That’s amazing! It must feel so empowering to have that kind of clarity."
 
     # Introduce AI-generated dialogue:
     # - Generate dynamic follow-up questions based on user input and context.
     # - Ensure responses build on the player’s earlier answers.
+
+    python:
+        ai_question = ai_generate_question("Test prompt")
 
     # Player answers questions via menu choices or text input.
 

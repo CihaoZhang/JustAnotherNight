@@ -2,17 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 60: expected statement.
-    "Male":
-          ^
-
-File "game/script.rpy", line 62: expected statement.
-    "Female":
-            ^
-
-File "game/script.rpy", line 64: expected statement.
-    "Non-Binary":
-                ^
+File "game/script.rpy", line 49: invalid syntax
+    <<<<<<< HEAD
+     ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sat Jan 11 03:57:49 2025
+Sat Jan 11 10:50:35 2025
