@@ -6,10 +6,19 @@ init python:
     import ChatGPT
 
 
-define e = Character("Eileen")
+define susie = Character("Susie")
+define sebastian = Character("Sebastian")
+define alex =Character("Alex")
 
 default gender = None
 
+image susie_smiling = "gui/images/characters/teenagegirl_smile.png"
+image sebastian_smiling = "gui/images/characters/TeenageBoySmile.png"
+image alex_smiling = "gui/images/characters/TeenageBoySmile.png"
+
+transform small_scale:
+    xzoom 0.5  # scales the image to 50% of its original size
+    yzoom 0.5  # scales the image to 50% of its original size
 
 # The game starts here.
 label start:
@@ -23,12 +32,24 @@ label start:
             gender = renpy.input("Invalid choice. Please select your gender (Woman, Man, Non-Binary):").strip()
 
         # Prompt for gender display preference
-        gender_display_choices = ['Male', 'Female', 'Non-Binary']
-        gender_display = renpy.input("Which gender are you most comfortable discussing with? (Male, Female, Non-Binary)").strip()
+        gender_display_choices = ['Woman', 'Man', 'Non-Binary']
+        gender_display = renpy.input("Which gender are you most comfortable discussing with? (Woman, Man, Non-Binary)").strip()
 
         # Ensure the gender display choice is valid
         while gender_display not in gender_display_choices:
-            gender_display = renpy.input("Invalid choice. Please select again (Male, Female, Non-Binary):").strip()
+            gender_display = renpy.input("Invalid choice. Please select again (Woman, Man, Non-Binary):").strip()
+
+
+
+        if gender_display == "Woman":
+            chosen_character = susie
+            chosen_image = "susie_smiling"
+        elif gender_display == "Man":
+            chosen_character = sebastian
+            chosen_image = "sebastian_smiling"
+        else:  
+            chosen_character = alex
+            chosen_image = "alex_smiling"
 
         # Confirm gender selection
         gender_message = {
@@ -36,6 +57,7 @@ label start:
             "Man": "You identify as a Man.",
             "Non-Binary": "You identify as Non-Binary."
         }[gender]
+
 
         # Prompt for the player's name
         player_name = renpy.input("What is your name?").strip()
@@ -68,12 +90,12 @@ label scene_start:
     image main_menu = "gui/images/backgrounds/BackgroundImageBalcony.jpeg"    
     scene main_menu
     play music "soft_night_theme.mp3"
-    show teenagegirl smile at left
+    show expression chosen_image at left 
 
-    e "Hi there! I’m so glad you could join me tonight. It feels like ages since I’ve had a chance to just... talk to someone like this."
+    chosen_character "Hi there! I’m so glad you could join me tonight. It feels like ages since I’ve had a chance to just... talk to someone like this."
 
     # Setting the conversational tone
-    e "You know, it’s crazy how quiet the city gets at this hour. It’s like everything just pauses for a little while. Tonight was... different, don’t you think?"
+    chosen_character "You know, it’s crazy how quiet the city gets at this hour. It’s like everything just pauses for a little while. Tonight was... different, don’t you think?"
 
     # # First question and responses
     # e "I think it’s when I’m working on something that really excites me, but I don’t know why. There’s beauty in the absurdity of things."
@@ -114,48 +136,48 @@ label scene_start:
     # Present the first set of choices
     menu:
         "It really did. I can’t remember the last time I felt this relaxed.":
-            e "I know, right? It’s like the whole world decided to take a deep breath."
+            chosen_character "I know, right? It’s like the whole world decided to take a deep breath."
         "Yeah, it’s nights like these that remind me how much I need to slow down more often.":
-            e "Exactly. I think we all need nights like this to just... catch up with ourselves."
+            chosen_character "Exactly. I think we all need nights like this to just... catch up with ourselves."
         "Completely. There’s something about the stillness that just puts things into perspective.":
-            e "Totally. It’s like the world is whispering secrets we’re usually too busy to hear."
+            chosen_character "Totally. It’s like the world is whispering secrets we’re usually too busy to hear."
 
     # Transition to the next question
-    e "I wonder if we spend enough time actually noticing things—like, the little details around us. Do you ever find yourself realizing something you never saw before?"
+    chosen_character "I wonder if we spend enough time actually noticing things—like, the little details around us. Do you ever find yourself realizing something you never saw before?"
 
     # Present the second set of choices
     menu:
         "Oh, definitely. It’s easy to miss the small things when you’re moving too fast.":
-            e "Right? I feel like life has all these hidden treasures we just overlook sometimes."
+            chosen_character "Right? I feel like life has all these hidden treasures we just overlook sometimes."
         "All the time. I think we just don’t take enough time to really look at what’s around us.":
-            e "Yeah, and it’s such a shame because there’s so much beauty everywhere."
+            chosen_character "Yeah, and it’s such a shame because there’s so much beauty everywhere."
         "That’s true. It’s amazing what you can notice when you slow down.":
-            e "It really is. Like tonight—the city feels so different when we actually pay attention."
+            chosen_character "It really is. Like tonight—the city feels so different when we actually pay attention."
 
     # Third question and responses
-    e "Yeah, sometimes I think we get caught up in everything and forget to appreciate what’s right in front of us. It’s funny—sometimes the answers we’re looking for are in the simple stuff. Do you find yourself always chasing after big goals and constantly feeling disappointed when you don’t achieve them?"
+    chosen_character "Yeah, sometimes I think we get caught up in everything and forget to appreciate what’s right in front of us. It’s funny—sometimes the answers we’re looking for are in the simple stuff. Do you find yourself always chasing after big goals and constantly feeling disappointed when you don’t achieve them?"
 
     menu:
         "I think I’m always looking ahead, but I’m starting to realize that the small moments really do matter.":
-            e "That’s such a good realization. It’s like those little moments are the glue holding everything together."
+            chosen_character "That’s such a good realization. It’s like those little moments are the glue holding everything together."
         "I’m all about the bigger picture, but I’m learning to appreciate the small wins along the way.":
-            e "That’s a great way to look at it. The big picture is important, but the journey is what makes it worth it."
+            chosen_character "That’s a great way to look at it. The big picture is important, but the journey is what makes it worth it."
         "I think both are important. Chasing big things keeps me going, but the small moments help me appreciate everything.":
-            e "Balance. That’s the key, isn’t it? You seem like someone who’s got their priorities figured out."
+            chosen_character "Balance. That’s the key, isn’t it? You seem like someone who’s got their priorities figured out."
 
     # Fourth question and responses
-    e "That makes sense. I guess it’s all about balance, right? Finding time for the things that truly matter. Speaking of which, what’s something that really makes you feel fulfilled? Like, something that makes you feel like you’re on the right path?"
+    chosen_character "That makes sense. I guess it’s all about balance, right? Finding time for the things that truly matter. Speaking of which, what’s something that really makes you feel fulfilled? Like, something that makes you feel like you’re on the right path?"
 
     menu:
         "I think it’s when I’m working on something that really excites me, but I don’t know why. There’s beauty in the absurdity of things.":
-            e "That’s such a beautiful way to put it. I love that you see beauty in the unexpected."
+            chosen_character "That’s such a beautiful way to put it. I love that you see beauty in the unexpected."
         "For me, it’s when I’m actively creating a better version of myself. I like knowing that I am giving myself the best chance to become great.":
-            e "That’s so inspiring. You’re really giving yourself a gift by thinking that way."
+            chosen_character "That’s so inspiring. You’re really giving yourself a gift by thinking that way."
         "I think it’s when I’m creating something or helping someone, when I know I’ve made an impact in someone’s life. That’s when I feel most fulfilled.":
-            e "That’s so wonderful. Making a difference like that is such a meaningful way to live."
+            chosen_character "That’s so wonderful. Making a difference like that is such a meaningful way to live."
 
     # Soft transition to Act 2
-    e "You’ve really got me thinking about some deep stuff tonight. It’s nice to talk like this. I feel like I’m learning so much about you."
+    chosen_character "You’ve really got me thinking about some deep stuff tonight. It’s nice to talk like this. I feel like I’m learning so much about you."
 
     return
 
