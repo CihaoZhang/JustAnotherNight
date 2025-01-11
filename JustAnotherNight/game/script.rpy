@@ -26,6 +26,11 @@ label start:
         while gender not in gender_choices:
             gender = renpy.input("Invalid choice. Please select your gender (Male, Female, Non-Binary):").strip()
 
+        # Ensure the gender is valid, if not ask again
+        while gender not in gender_choices:
+            gender = renpy.input("Invalid choice. Please select your gender (Male, Female, Non-Binary):").strip()
+
+
     # Display the gender selection confirmation
     $ gender_message = {
         "Male": "You selected Male.",
