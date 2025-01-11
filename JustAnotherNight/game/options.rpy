@@ -13,7 +13,7 @@
 ## The _() surrounding the string marks it as eligible for translation.
 
 define config.name = ("JustAnotherNight")
-define config.main_menu_background = "gui/main_menu.png"
+define config.main_menu_background = "JustAnotherNight/game/gui/main_menu.png"
 
 
 
