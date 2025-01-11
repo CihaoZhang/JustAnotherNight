@@ -13,7 +13,7 @@
 ## The _() surrounding the string marks it as eligible for translation.
 
 define config.name = ("JustAnotherNight")
-define config.main_menu_background = "main_menu.png"
+define config.main_menu_bg = "gui/main_menu.png"
 
 
 
@@ -21,6 +21,7 @@ define config.main_menu_background = "main_menu.png"
 ## this to False to hide the title.
 
 define gui.show_name = True
+define giu.show_main_menu_bg
 
 
 
@@ -109,7 +110,7 @@ define config.end_game_transition = None
 ## After the game has started, this can be changed with the "window show",
 ## "window hide", and "window auto" statements.
 
-define config.window = "auto"
+#define config.window = "auto"
 
 
 ## Transitions used to show and hide the dialogue window

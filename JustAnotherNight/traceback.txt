@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 27, in script
+    python:
+  File "game/script.rpy", line 43, in <module>
+    if apikey != '':
+NameError: name 'apikey' is not defined
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 27, in script
+    python:
+  File "C:\Users\xueai\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 827, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\Users\xueai\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1178, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/script.rpy", line 43, in <module>
+    if apikey != '':
+NameError: name 'apikey' is not defined
+
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.3.4.24120703
+JustAnotherNight 1.0
+Sat Jan 11 03:28:09 2025
