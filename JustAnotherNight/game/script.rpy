@@ -16,9 +16,8 @@ image susie_smiling = "gui/images/characters/teenagegirl_smile.png"
 image sebastian_smiling = "gui/images/characters/TeenageBoySmile.png"
 image alex_smiling = "gui/images/characters/TeenageBoySmile.png"
 
-transform small_scale:
-    xzoom 0.5  # scales the image to 50% of its original size
-    yzoom 0.5  # scales the image to 50% of its original size
+
+    
 
 # The game starts here.
 label start:
@@ -90,7 +89,7 @@ label scene_start:
     image main_menu = "gui/images/backgrounds/BackgroundImageBalcony.jpeg"    
     scene main_menu
     play music "soft_night_theme.mp3"
-    show expression chosen_image at left 
+    show expression chosen_image at left
 
     chosen_character "Hi there! I’m so glad you could join me tonight. It feels like ages since I’ve had a chance to just... talk to someone like this."
 

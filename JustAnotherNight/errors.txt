@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 90: end of line expected.
-    show expression chosen_image at left with transform zoom 0.5
-                                                        ^
+File "game/script.rpy", line 93: multiple at clauses are prohibited.
+    show expression chosen_image at left at half_scale
+                                           ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sat Jan 11 10:15:34 2025
+Sat Jan 11 10:29:17 2025
