@@ -10,6 +10,60 @@ define susie = Character("Susie")
 define sebastian = Character("Sebastian")
 define alex =Character("Alex")
 
+
+init python:
+    import chatgpt
+
+    def set_ai_prompt():
+        return [
+            {"role": "system", "content": f"""
+            You are generating dynamic dialogue for a dating simulation game. The character is a warm and curious girlfriend who wants to know more about the player in a welcoming, safe, and conversational way. Use a soft and friendly tone, offering encouragement and compliments based on their answers.
+
+            Guidelines:
+            
+Avoid being too direct—ask open-ended, conversational questions instead.
+Build on the user’s previous answers to create natural, engaging follow-ups.
+Focus on hobbies, dreams, and personal stories, not just jobs or careers.
+
+            Ethical Restrictions:
+            
+Do not generate inappropriate, harmful, or exploitative content.
+If sensitive or unsafe topics are introduced, redirect the conversation respectfully and provide a neutral response.
+Ensure all outputs align with the theme of a dating sim and create a safe space for players."""}]
+
+    def ai_generate_question(user_context):
+        """
+        Generate dynamic AI-driven questions based on user-provided context.
+
+        Args:
+            user_context (str): The player's response or current thought.
+
+        Returns:
+            str: AI-generated question.
+        """
+        # Set up the conversation with the AI's system prompt
+        messages = set_ai_prompt()
+
+        # Add user context as the first user input
+        messages.append({"role": "user", "content": user_context})
+
+        try:
+            # Generate AI response based on current conversation
+            completion = chatgpt.completion(
+                messages,
+                api_key = ""
+            )
+
+            # Return the AI's generated question
+            return completion[-1]["content"]
+        except Exception as e:
+            return f"An error occurred: {e}"
+
+
+
+
+
+
 default gender = None
 
 image susie_smiling = "gui/images/characters/teenagegirl_smile.png"
@@ -178,7 +232,32 @@ label scene_start:
     # Soft transition to Act 2
     chosen_character "You’ve really got me thinking about some deep stuff tonight. It’s nice to talk like this. I feel like I’m learning so much about you."
 
-    return
+    jump act_2_start
+
+label act_2_start:
+    image act_2_bg = "gui/images/backgrounds/smt.png"
+    scene act_2_bg
+
+    chosen_character "You know, talking to you earlier really got me thinking. It’s nice to have these kinds of conversations—it feels like we’re really connecting."
+    chosen_character "I was wondering... do you feel like the world ever pulls you in so many directions that you lose sight of what you really want?"
+
+    menu:
+        "Sometimes, but I try to remind myself of what truly matters.":
+            $ user_response = "Sometimes, but I try to remind myself of what truly matters."
+            chosen_character "That’s such a grounded way to see things. I admire that about you."
+        "All the time. It feels like a constant struggle to stay focused.":
+            $ user_response = "All the time. It feels like a constant struggle to stay focused."
+            chosen_character "I get that. It’s tough, but I think those struggles teach us a lot about ourselves."
+        "Not really. I’ve always been pretty clear about my path.":
+            $ user_response = "Not really. I’ve always been pretty clear about my path."
+            chosen_character "That’s amazing! It must feel so empowering to have that kind of clarity."
+
+    # Call AI function to generate a dynamic question
+    python:
+        ai_question = ai_generate_question(user_response)
+
+    # Use AI-generated question in dialogue
+    chosen_character "[ai_question]"
 
 label act_2_start:
     # Opening Scene
