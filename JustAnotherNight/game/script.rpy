@@ -9,7 +9,7 @@ init python:
 define e = Character("Eileen")
 
 default gender = None
-
+image teenagegirl_smile = "teenagegirl_smile.pdf"
 
 # The game starts here.
 label start:
