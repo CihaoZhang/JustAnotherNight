@@ -9,47 +9,58 @@ init python:
 define e = Character("Eileen")
 
 default gender = None
-image teenagegirl_smile = "teenagegirl_smile.pdf"
+
 
 # The game starts here.
 label start:
-    # Gender selection using Python input
-    $ gender = None
-
-    # Prompt the player for gender selection
     python:
-        gender_choices = ['Male', 'Female', 'Non-Binary']
-        gender = renpy.input("Please select your gender (Male, Female, Non-Binary):")
-        gender = gender.strip()  # Clean up any extra spaces
+        # Prompt the player for gender selection
+        gender_choices = ['Woman', 'Man', 'Non-Binary']
+        gender = renpy.input("Please select your gender (Woman, Man, Non-Binary):").strip()
 
-        # Ensure the gender is valid, if not ask again
+        # Ensure the gender is valid; if not, ask again
         while gender not in gender_choices:
-            gender = renpy.input("Invalid choice. Please select your gender (Male, Female, Non-Binary):").strip()
+            gender = renpy.input("Invalid choice. Please select your gender (Woman, Man, Non-Binary):").strip()
 
-        # Ensure the gender is valid, if not ask again
-        while gender not in gender_choices:
-            gender = renpy.input("Invalid choice. Please select your gender (Male, Female, Non-Binary):").strip()
+        # Prompt for gender display preference
+        gender_display_choices = ['Male', 'Female', 'Non-Binary']
+        gender_display = renpy.input("Which gender are you most comfortable discussing with? (Male, Female, Non-Binary)").strip()
+
+        # Ensure the gender display choice is valid
+        while gender_display not in gender_display_choices:
+            gender_display = renpy.input("Invalid choice. Please select again (Male, Female, Non-Binary):").strip()
+
+        # Confirm gender selection
+        gender_message = {
+            "Woman": "You identify as a Woman.",
+            "Man": "You identify as a Man.",
+            "Non-Binary": "You identify as Non-Binary."
+        }[gender]
+
+        # Prompt for the player's name
+        player_name = renpy.input("What is your name?").strip()
+
+        # Set a default name if left blank
+        if player_name == "":
+            player_name = "Player"
+
+        # Create a personalized greeting message
+        greeting_message = {
+            "Male": f"Welcome, Sir {player_name}!",
+            "Female": f"Welcome, Ma'am {player_name}!",
+            "Non-Binary": f"Welcome, {player_name}!"
+        }[gender_display]
+
+    # Display the confirmation and greeting
+    "[gender_message]"
+    "[greeting_message]"
+
+    
 
 
-    # Display the gender selection confirmation
-    $ gender_message = {
-        "Male": "You selected Male.",
-        "Female": "You selected Female.",
-        "Non-Binary": "You selected Non-Binary."
-    }[gender]
 
-    # Prompt for player's name
-    $ player_name = renpy.input("What is your name?")
-    $ player_name = player_name.strip()  # Remove extra spaces
-    if player_name == "":
-        $ player_name = "Player"  # Default name if left blank
 
-    # Display the personalized greeting
-    $ greeting_message = {
-        "Male": "Welcome, Sir [player_name]!",
-        "Female": "Welcome, Ma'am [player_name]!",
-        "Non-Binary": "Welcome, [player_name]!"
-    }[gender]
+
 
     jump scene_start
 
