@@ -1,0 +1,26 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/rayansoussi/Documents/GitHub/JustAnotherNight/Just Another Night/game/saves/persistent.1736584893.tmp'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/bootstrap.py", line 359, in bootstrap
+    renpy.main.main()
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/main.py", line 666, in main
+    renpy.persistent.update(True)
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/persistent.py", line 434, in update
+    save()
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/persistent.py", line 456, in save
+    renpy.loadsave.location.save_persistent(compressed)
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/savelocation.py", line 622, in save_persistent
+    l.save_persistent(data)
+  File "/Volumes/renpy-8.3.4-sdk/renpy-8.3.4-sdk/renpy/savelocation.py", line 426, in save_persistent
+    with open(fn_tmp, "wb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/rayansoussi/Documents/GitHub/JustAnotherNight/Just Another Night/game/saves/persistent.1736584893.tmp'
+
+macOS-14.6-arm64-arm-64bit arm64
+Ren'Py 8.3.4.24120703
+Just Another Night 1.0
+Sat Jan 11 04:56:59 2025
