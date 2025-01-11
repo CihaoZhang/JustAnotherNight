@@ -52,7 +52,7 @@ label scene_start:
     image main_menu = "gui/images/backgrounds/BackgroundImageBalcony.jpeg"    
     scene main_menu
     play music "soft_night_theme.mp3"
-    show girl_smiling
+    show girl_smiling at left
 
     e "Hi there! I’m so glad you could join me tonight. It feels like ages since I’ve had a chance to just... talk to someone like this."
 
