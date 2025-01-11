@@ -60,7 +60,33 @@ Ensure all outputs align with the theme of a dating sim and create a safe space 
             return f"An error occurred: {e}"
 
 
+ def ai_generate_recommendations(user_context):
+        """
+        Generate dynamic AI-driven questions based on user-provided context.
 
+        Args:
+            user_context (str): The player's response or current thought.
+
+        Returns:
+            str: AI-generated question.
+        """
+        # Set up the conversation with the AI's system prompt
+        messages = set_ai_prompt()
+
+        # Add user context as the first user input
+        messages.append({"role": "user", "content": "generate and recommend urls, resources and the current job market for the given talents as you collect more information. Yo uare a private, friendly career counselor that happens to be the date of the user. please act in a way that is soft and friendly, while keeping it professinal, use the user context below to determine the correct jobs appropriate. Keep it within 100 words, so that you fit within the dialogue" + user_context})
+
+        try:
+            # Generate AI response based on current conversation
+            completion = chatgpt.completion(
+                messages,
+                api_key = ""
+            )
+
+            # Return the AI's generated question
+            return completion[-1]["content"]
+        except Exception as e:
+            return f"An error occurred: {e}"
 
 
 
@@ -283,19 +309,28 @@ label act_2_start:
 
 
 label act_3_start:
-    # Opening Scene
-    # Set a reflective and supportive tone with a suitable background and music.
+    python: 
+        if gender_display == "Woman":
+            chosen_character = susie
+            chosen_image = "susie_smiling"
+        elif gender_display == "Man":
+            chosen_character = sebastian
+            chosen_image = "sebastian_smiling"
+        else:  
+            chosen_character = alex
+            chosen_image = "alex_smiling"
 
-    # Character opens with an encouraging statement to set the stage.
+        user_response = renpy.input("What about your talents? From what you told me so far, I bet you have a ton of them!")
+        for i in range (2):
+            ai_question = ai_generate_question(user_response)
+            
+        user_response1 = renpy.input("It's always good to talk about what we can do, but it's also important to think about what you want to do. Never forget that. So.. what's your dream job(s)?")
+        for i in range (2):
+            ai_question = ai_generate_question(user_response1)
 
-    # AI generates the introduction for personalized guidance based on user context.
+        user_response2 = renpy.input("Ambition is key to success. But, prospects are also important to consider. How would you put yourself on such a scale? ")
+        for i in range (2):
+            ai_question = ai_generate_question(user_response2)
+        ai_rec = ai_generate_recommendations(user_response,user_response1,user_response2)
+        
 
-    # Use a loop to:
-    # - Generate dynamic AI-driven questions or guidance.
-    # - Accept player responses (choices or text input).
-    # - Update user context dynamically and generate follow-ups.
-
-    # Include conditions to check if the player feels ready to move forward.
-
-    # Scene concludes with a supportive and hopeful closing statement. One of many other endings
-    return
