@@ -23,8 +23,8 @@ label start:
             gender = renpy.input("Invalid choice. Please select your gender (Woman, Man, Non-Binary):").strip()
 
         # Prompt for gender display preference
-        gender_display_choices = ['Male', 'Female', 'Non-Binary']
-        gender_display = renpy.input("Which gender are you most comfortable discussing with? (Male, Female, Non-Binary)").strip()
+        gender_display_choices = ['Woman', 'Man', 'Non-Binary']
+        gender_display = renpy.input("Which gender are you most comfortable discussing with? (Woman, Man, Non-Binary)").strip()
 
         # Ensure the gender display choice is valid
         while gender_display not in gender_display_choices:
@@ -46,8 +46,13 @@ label start:
 
         # Create a personalized greeting message
         greeting_message = {
+<<<<<<< HEAD
+            "Man": f"Welcome, Sir {player_name}!",
+            "Woman": f"Welcome, Ma'am {player_name}!",
+=======
             "Woman": f"Welcome, Ms. {player_name}!",
             "Man": f"Welcome, Mr. {player_name}!",
+>>>>>>> f21c633384c6acd2e3d12251ba11dbec7cb9245e
             "Non-Binary": f"Welcome, {player_name}!"
         }[gender_display]
 

@@ -1,0 +1,94 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+2025-01-11 14:35:51 UTC
+macOS-14.6-arm64-arm-64bit
+Ren'Py 8.3.4.24120703
+
+Early init took 0.03s
+Loading error handling took 0.02s
+Loading script took 0.08s
+=======
+=======
+<<<<<<< Updated upstream
+>>>>>>> dd45143834db9e0a74adc25dd86a1a95e3dc6a8b
+2025-01-11 14:35:55 UTC
+macOS-13.2.1-arm64-arm-64bit
+Ren'Py 8.3.4.24120703
+
+Early init took 0.03s
+Loading error handling took 0.03s
+Loading script took 0.45s
+>>>>>>> f21c633384c6acd2e3d12251ba11dbec7cb9245e
+Loading save slot metadata took 0.02s
+=======
+2025-01-11 09:15:18 UTC
+Windows-10-10.0.19045
+Ren'Py 8.3.4.24120703
+
+Early init took 0.07s
+Loading error handling took 0.02s
+Loading script took 0.10s
+Loading save slot metadata took 0.03s
+>>>>>>> Stashed changes
+Loading persistent took 0.00s
+Running init code took 0.07s
+Loading analysis data took 0.01s
+Analyze and compile ATL took 0.00s
+Reloading save slot metadata took 0.02s
+Index archives took 0.00s
+<<<<<<< HEAD
+Backing up script files to '/Users/rayansoussi/Library/RenPy/backups/JustAnotherNight':
+Dump and make backups took 0.03s
+=======
+Backing up script files to '/Users/mona_mm/Library/RenPy/backups/JustAnotherNight':
+Dump and make backups took 0.02s
+>>>>>>> f21c633384c6acd2e3d12251ba11dbec7cb9245e
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+<<<<<<< Updated upstream
+Initial gc took 0.02s
+DPI scale factor: 1.000000
+Creating interface object took 0.00s
+=======
+Initial gc took 0.04s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: Disabled thread optimizations.
+Creating interface object took 0.24s
+>>>>>>> Stashed changes
+Cleaning stores took 0.00s
+Init translation took 0.01s
+Build styles took 0.00s
+Load screen analysis took 0.00s
+Analyze screens took 0.01s
+Save screen analysis took 0.01s
+Prepare screens took 0.03s
+Save pyanalysis. took 0.00s
+<<<<<<< Updated upstream
+Save bytecode. took 0.02s
+Running _start took 0.00s
+Interface start took 0.22s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1470, 956)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'Apple'"
+Renderer: b'Apple M2'
+Version: b'2.1 Metal - 83'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1294, 728) drawable=(2588, 1456)
+Maximum texture size: 4096x4096
+<<<<<<< HEAD
+Cleaning stores took 0.00s
+Init translation took 0.00s
+Build styles took 0.00s
+Load screen analysis took 0.02s
+Analyze screens took 0.00s
+Prepare screens took 0.00s
+Running _start took 0.00s
+=======
+=======
+Save bytecode. took 0.00s
+>>>>>>> Stashed changes
+>>>>>>> dd45143834db9e0a74adc25dd86a1a95e3dc6a8b
