@@ -8,10 +8,47 @@ init python:
 
 define e = Character("Eileen")
 
+default gender = None
+
+
 # The game starts here.
 
 label start:
     # Load the background, music, and character
+    # Gender selection:
+    menu:
+        "Select your gender:":
+            "Male":
+                $ gender = "male"
+            "Female":
+                $ gender = "female"
+            "Non-Binary":
+                $ gender = "non-binary"
+    # Display confirmation and proceed to the scene
+    if gender == "male":
+            "You selected Male."
+    elif gender == "female":
+            "You selected Female."
+    elif gender == "nonbinary":
+            "You selected Non-Binary."
+
+    # Prompt for player's name
+    $ player_name = renpy.input("What is your name?")
+    $ player_name = player_name.strip()  # Remove extra spaces
+    if player_name == "":
+        $ player_name = "Player"  # Default name if left blank
+
+    # Display confirmation of name and gender
+    if gender == "male":
+        "Welcome, Sir [player_name]!"
+    elif gender == "female":
+        "Welcome, Ma'am [player_name]!"
+    elif gender == "nonbinary":
+        "Welcome, [player_name]!"
+
+    jump scene_start
+
+label scene_start:      
     scene bg_city_night
     play music "soft_night_theme.mp3"
     show girl_smiling
