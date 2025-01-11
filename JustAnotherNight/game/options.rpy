@@ -21,7 +21,7 @@ define config.main_menu_bg = "gui/main_menu.png"
 ## this to False to hide the title.
 
 define gui.show_name = True
-define giu.show_main_menu_bg
+#define giu.show_main_menu_bg
 
 
 
