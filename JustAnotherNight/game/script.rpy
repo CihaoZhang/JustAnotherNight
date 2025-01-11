@@ -2,28 +2,36 @@
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
+init python:
+    import ChatGPT
+
+
+define e = Character("Eileen")
+
 default gender = None
 
-# The game starts here.
 
+# The game starts here.
 label start:
-    # Load the background, music, and character
-    # Gender selection:
-    menu:
-        "Select your gender:":
-            "Male":
-                $ gender = "male"
-            "Female":
-                $ gender = "female"
-            "Non-Binary":
-                $ gender = "non-binary"
-    # Display confirmation and proceed to the scene
-    if gender == "male":
-            "You selected Male."
-    elif gender == "female":
-            "You selected Female."
-    elif gender == "nonbinary":
-            "You selected Non-Binary."
+    # Gender selection using Python input
+    $ gender = None
+
+    # Prompt the player for gender selection
+    python:
+        gender_choices = ['Male', 'Female', 'Non-Binary']
+        gender = renpy.input("Please select your gender (Male, Female, Non-Binary):")
+        gender = gender.strip()  # Clean up any extra spaces
+
+        # Ensure the gender is valid, if not ask again
+        while gender not in gender_choices:
+            gender = renpy.input("Invalid choice. Please select your gender (Male, Female, Non-Binary):").strip()
+
+    # Display the gender selection confirmation
+    $ gender_message = {
+        "Male": "You selected Male.",
+        "Female": "You selected Female.",
+        "Non-Binary": "You selected Non-Binary."
+    }[gender]
 
     # Prompt for player's name
     $ player_name = renpy.input("What is your name?")
@@ -31,18 +39,18 @@ label start:
     if player_name == "":
         $ player_name = "Player"  # Default name if left blank
 
-    # Display confirmation of name and gender
-    if gender == "male":
-        "Welcome, Sir [player_name]!"
-    elif gender == "female":
-        "Welcome, Ma'am [player_name]!"
-    elif gender == "nonbinary":
-        "Welcome, [player_name]!"
+    # Display the personalized greeting
+    $ greeting_message = {
+        "Male": "Welcome, Sir [player_name]!",
+        "Female": "Welcome, Ma'am [player_name]!",
+        "Non-Binary": "Welcome, [player_name]!"
+    }[gender]
 
     jump scene_start
 
-label scene_start:      
-    scene bg_city_night
+label scene_start:  
+    image main_menu = "gui/images/backgrounds/BackgroundImageBalcony.jpeg"    
+    scene main_menu
     play music "soft_night_theme.mp3"
     show girl_smiling
 
@@ -50,6 +58,42 @@ label scene_start:
 
     # Setting the conversational tone
     e "You know, it’s crazy how quiet the city gets at this hour. It’s like everything just pauses for a little while. Tonight was... different, don’t you think?"
+
+    # # First question and responses
+    # e "I think it’s when I’m working on something that really excites me, but I don’t know why. There’s beauty in the absurdity of things."
+
+    # python:
+    #     #The "system" message is the initial prompt of your NPC
+    #     #Messages with "assistant" are messages from the NPC, here there's a first message so we add it to the list of messages already said by the NPC
+    #     messages = [
+    #         {"role": "system", "content": "You are Eileen, a tennage student enrolled at Miskatonic Univeristy of Arkham. You are secretly in love with the user. You laugh very frequently and finish your sentences with 'Hihihi'"},
+    #         {"role": "assistant", "content": "Hello there, my name is Eileen, who are you ?"}
+    #     ]
+
+    #     while True:
+    #         #We ask the user for an input
+    #         user_input = renpy.input("What do you say ?", length=1000)
+    #         #Then add it in the "history" of messages
+    #         messages.append(
+    #             {"role": "user", "content": user_input}
+    #         )
+
+    #         if apikey != '':
+    #             #We ask ChatGPT to "complete" the conversation by adding a response
+    #             #If you have an API key, let's use that
+    #             messages = chatgpt.completion(messages,api_key=apikey)
+    #         else :
+    #             #If you don't provide an API key, we'll use my proxy
+    #             #This proxy only allows a set of NPCs, and serves to "hide" my API key
+    #             #Check the README.md to know more about it
+    #             #Of course if you modify the NPC in any way, it won't work, you'll have to use your own API key instead.
+    #             messages = chatgpt.completion(messages,proxy="http://prima.wiki/proxy.php")
+
+    #         #Here we only care about the response from the NPC
+    #         response = messages[-1]["content"]
+    #         #So we display just that
+    #         e("[response]")
+
 
     # Present the first set of choices
     menu:

@@ -2,13 +2,17 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 1: expected statement.
-    import google.auth
-                 ^
+File "game/script.rpy", line 60: expected statement.
+    "Male":
+          ^
 
-File "game/script.rpy", line 2: expected statement.
-    from google.cloud import gemini_v1
-               ^
+File "game/script.rpy", line 62: expected statement.
+    "Female":
+            ^
+
+File "game/script.rpy", line 64: expected statement.
+    "Non-Binary":
+                ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sat Jan 11 02:00:41 2025
+Sat Jan 11 03:57:49 2025
