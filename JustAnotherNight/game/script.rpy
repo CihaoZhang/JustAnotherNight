@@ -12,39 +12,39 @@ default gender = None
 
 
 # The game starts here.
-
 label start:
-    # # Load the background, music, and character
-    # # Gender selection:
-    # menu:
-    #     "Select your gender:":
-    #         "Male":
-    #             $ gender = "male"
-    #         "Female":
-    #             $ gender = "female"
-    #         "Non-Binary":
-    #             $ gender = "non-binary"
-    # # Display confirmation and proceed to the scene
-    # if gender == "male":
-    #         "You selected Male."
-    # elif gender == "female":
-    #         "You selected Female."
-    # elif gender == "nonbinary":
-    #         "You selected Non-Binary."
+    # Gender selection using Python input
+    $ gender = None
 
-    # # Prompt for player's name
-    # $ player_name = renpy.input("What is your name?")
-    # $ player_name = player_name.strip()  # Remove extra spaces
-    # if player_name == "":
-    #     $ player_name = "Player"  # Default name if left blank
+    # Prompt the player for gender selection
+    python:
+        gender_choices = ['Male', 'Female', 'Non-Binary']
+        gender = renpy.input("Please select your gender (Male, Female, Non-Binary):")
+        gender = gender.strip()  # Clean up any extra spaces
 
-    # # Display confirmation of name and gender
-    # if gender == "male":
-    #     "Welcome, Sir [player_name]!"
-    # elif gender == "female":
-    #     "Welcome, Ma'am [player_name]!"
-    # elif gender == "nonbinary":
-    #     "Welcome, [player_name]!"
+        # Ensure the gender is valid, if not ask again
+        while gender not in gender_choices:
+            gender = renpy.input("Invalid choice. Please select your gender (Male, Female, Non-Binary):").strip()
+
+    # Display the gender selection confirmation
+    $ gender_message = {
+        "Male": "You selected Male.",
+        "Female": "You selected Female.",
+        "Non-Binary": "You selected Non-Binary."
+    }[gender]
+
+    # Prompt for player's name
+    $ player_name = renpy.input("What is your name?")
+    $ player_name = player_name.strip()  # Remove extra spaces
+    if player_name == "":
+        $ player_name = "Player"  # Default name if left blank
+
+    # Display the personalized greeting
+    $ greeting_message = {
+        "Male": "Welcome, Sir [player_name]!",
+        "Female": "Welcome, Ma'am [player_name]!",
+        "Non-Binary": "Welcome, [player_name]!"
+    }[gender]
 
     jump scene_start
 

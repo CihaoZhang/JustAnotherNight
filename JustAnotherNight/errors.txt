@@ -2,9 +2,17 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 52: end of line expected.
-    scene JustAnotherNight\game\gui\images\backgrounds\BackgroundImageBalcony.jpeg
-                          ^
+File "game/script.rpy", line 60: expected statement.
+    "Male":
+          ^
+
+File "game/script.rpy", line 62: expected statement.
+    "Female":
+            ^
+
+File "game/script.rpy", line 64: expected statement.
+    "Non-Binary":
+                ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sat Jan 11 03:44:21 2025
+Sat Jan 11 03:57:49 2025
